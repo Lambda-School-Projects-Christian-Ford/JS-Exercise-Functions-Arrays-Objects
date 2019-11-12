@@ -155,6 +155,13 @@ function get3rdCar(inventory) {
 */
 function getCarInfoByIndex(inventory, index) {
   /* code here */
+  
+
+  const the1st = inventory.find( (item, index) => {
+    return index === 0;
+  })
+
+  return `This is a ${inventory[index].car_make} ${inventory[index].car_model}`
 }
 
 /**
@@ -168,8 +175,13 @@ function getCarInfoByIndex(inventory, index) {
  * For example, if getLastCarInfo is invoked passing the inventory inside /data/inventory.js,
  * it will return `This is a Lincoln Town Car`.
 */
-function getLastCarInfo(/* code here */) {
+
+
+
+function getLastCarInfo(inventory) {
   /* code here */
+  return `This is a ${inventory[inventory.length - 1].car_make} ${inventory[inventory.length - 1].car_model}`
+  
 }
 
 /**
@@ -184,8 +196,9 @@ function getLastCarInfo(/* code here */) {
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoById(/* code here */) {
+function getCarInfoById(inventory, id) {
   /* code here */
+  return "this is a" + inventory[id - 1].car_make + inventory[id - 1].car_model;
 }
 
 /**
@@ -196,8 +209,24 @@ function getCarInfoById(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
-function sortCarInventory(/* code here */) {
+function sortCarInventory(inventory) {
   /* code here */
+  let sortedInventory = []
+  let newFullArray = []
+  for (let i = 0; i < inventory.length; i++) {
+    sortedInventory.push(inventory[i].car_model) ;
+  }
+  sortedInventory = sortedInventory.sort()
+  for (let j = 0; j < sortedInventory.length; j++) {
+    for (let k = 0; k < inventory.length; k++) {
+      if (sortedInventory[j] === inventory[k].car_model) {
+        newFullArray.push(inventory[k]) ;
+        k = inventory.length ;
+      }
+    }
+  }
+
+  return newFullArray;
 }
 
 /**
